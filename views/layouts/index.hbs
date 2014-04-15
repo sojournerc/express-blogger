@@ -1,0 +1,60 @@
+<!doctype html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <meta name="description" content="
+    {{!-- # <%= @context [:description] || 'Sublimity from sojournerC' %> --}}
+    " />
+    <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="/index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="sojournerC" href="http://feeds.feedburner.com/SojournerC" />
+    <meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <link href="/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+    <title>
+      
+    </title>
+  </head>
+  <body>
+    <header class="text">
+        <h1>sojournerC</h1>
+    </header>
+    <header class="nav">
+      <a class="logo" href="/"><img src="/img/logo.svg" alt="sojournerC"/></a>
+      <ul class="nav">
+        <span class="divider"></span>
+        <li {{#if categories.musings}} class="active" {{/if}}>
+          <a href="/musings"><i class="icon-leaf"></i></a>
+        </li>
+        <li {{#if categories.tech}} class="active" {{/if}}>
+          <a href="/tech"><i class="icon-bolt"></i></a>
+        </li>
+        <li {{#if categories.code}} class="active" {{/if}}>
+          <a href="/code"><span>&#60;/&#62;</span></a>
+        </li>
+        <div class="nav-indicator"></div>
+        <span class="divider"></span>
+        <li>
+          <a href="https://twitter.com/Chris_Paul_M"><i class="icon-twitter"></i></a>
+        </li>
+        <li>
+          <a href="http://feeds.feedburner.com/SojournerC"><i class="icon-rss"></i></a>
+        </li>
+        <li>
+          <a href="https://github.com/sojournerc"><i class="icon-github"></i></a>
+        </li>
+        <span class="divider"></span>
+      </ul>
+      <a href="#" class="menu-toggle"><span><i class="icon-reorder"></i></span></a>
+    </header>
+
+    {{{body}}}
+    
+    <!--SCRIPTS-->
+    <script src="/js/libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/libs/prettify.js"></script>
+
+  </body>
+</html>

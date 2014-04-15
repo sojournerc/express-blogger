@@ -1,0 +1,21 @@
+<section class="articles">
+  {{#each articles}}
+    <article class="post">
+      <header>
+        <h1>{{ meta.title}}</h1>
+        <span class="sub-head">
+            {{#format_date}}{{ meta.date }}{{/format_date}}
+        </span>
+      </header>
+    
+      <section class="content">
+        {{{ body }}}
+      </section>
+    
+      <section class="comments">
+      </section>
+    </article>
+  {{/each}}
+</section>
+
+
