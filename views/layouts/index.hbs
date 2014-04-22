@@ -1,60 +1,39 @@
 <!doctype html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-    <meta name="description" content="
-    {{!-- # <%= @context [:description] || 'Sublimity from sojournerC' %> --}}
-    " />
-    <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="/index.xml" />
-    <link rel="alternate" type="application/rss+xml" title="sojournerC" href="http://feeds.feedburner.com/SojournerC" />
-    <meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <meta name="description" content="{{#if article}}{{article.summary}}{{else}}{{site.blog_description}}{{/if}}"/>
+    
+    <link rel="alternate" type="application/atom+xml" title="{{site.blog_name}} - feed" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="{{site.blog_name}}" href="/rss.xml" />
+    
+    <meta name="viewport" content="width=100%, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link href="/css/prettify.css" type="text/css" rel="stylesheet" />
 
-
-    <title>
-      
-    </title>
+    <title>{{#if category}}{{category}}{{else}}{{#if article}}{{article.meta.title}}{{else}}{{site.blog_name}}{{/if}}{{/if}}</title>
   </head>
   <body>
     <header class="text">
-        <h1>sojournerC</h1>
+      <h1>{{site.blog_name}}</h1>
     </header>
-    <header class="nav">
-      <a class="logo" href="/"><img src="/img/logo.svg" alt="sojournerC"/></a>
+
+    <section class="nav">
       <ul class="nav">
-        <span class="divider"></span>
-        <li {{#if categories.musings}} class="active" {{/if}}>
-          <a href="/musings"><i class="icon-leaf"></i></a>
+        {{#each categories}}
+        <li {{#if selected}} class="active" {{/if}}>
+          <a href="/{{name}}">{{name}}</a>
         </li>
-        <li {{#if categories.tech}} class="active" {{/if}}>
-          <a href="/tech"><i class="icon-bolt"></i></a>
-        </li>
-        <li {{#if categories.code}} class="active" {{/if}}>
-          <a href="/code"><span>&#60;/&#62;</span></a>
-        </li>
-        <div class="nav-indicator"></div>
-        <span class="divider"></span>
-        <li>
-          <a href="https://twitter.com/Chris_Paul_M"><i class="icon-twitter"></i></a>
-        </li>
-        <li>
-          <a href="http://feeds.feedburner.com/SojournerC"><i class="icon-rss"></i></a>
-        </li>
-        <li>
-          <a href="https://github.com/sojournerc"><i class="icon-github"></i></a>
-        </li>
-        <span class="divider"></span>
+        {{/each}}
       </ul>
-      <a href="#" class="menu-toggle"><span><i class="icon-reorder"></i></span></a>
-    </header>
+    </section>
 
     {{{body}}}
     
     <!--SCRIPTS-->
     <script src="/js/libs/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
     <script type="text/javascript" src="/js/libs/prettify.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 
   </body>
 </html>

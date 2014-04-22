@@ -20,7 +20,8 @@
     "less": "~1.4.2",
     "js-yaml": "~3.0.2",
     "marked": "~0.3.2",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "xml-writer": "~1.4.1"
   },
   "devDependencies": {},
   "scripts": {

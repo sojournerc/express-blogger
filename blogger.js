@@ -1,24 +1,32 @@
-var __ = require('underscore');
+var _ = require('underscore');
 var fs = require('fs');
 var yaml = require('js-yaml');
 var marked = require('marked'); 
 var formatDate = require('./lib/format-date');
+var XMLWriter = require('xml-writer');
 
-module.exports = function (app, options) {
-    options = __.extend({}, 
+module.exports = function (options) {
     // DEFAULTS
+    options = _.extend({}, 
     {
       file_ext: '.md',
       summary_length: 500,
       article_path: 'articles',
-      date_pattern: 'dd - MMM - YY'
+      date_pattern: 'dd MMM, YYYY',
+      rss_out: 'public/rss.xml',
+      site: {
+        blog_name: 'An Express Blogger Site',
+        blog_description: 'Blog in node.js with express in minutes - without a database',
+        blog_url: 'http://your-url-here.com',
+        blog_category: '',
+      }
     }, options);
 
     var articles = [];
     var article_categories = [];
     this.parseArticles = function () {
       // make sure all paths for article are using defined file_ext
-      var article_paths = __.filter(fs.readdirSync(__dirname + '/' + options.article_path), function (path) {
+      var article_paths = _.filter(fs.readdirSync(__dirname + '/' + options.article_path), function (path) {
         return new RegExp(options.file_ext +'$').test(path);
       });
 
@@ -54,12 +62,37 @@ module.exports = function (app, options) {
     };
     this.parseArticles();
 
+    this.writeXMLForRSS = function () {
+      var xw = new XMLWriter();
+      xw.startDocument('1.0', 'UTF-8');
+      
+      // header 
+      xw.startElement('rss').writeAttribute('version', '2.0');
+      
+      //channel
+      xw.startElement('channel').writeElement('title', options.site.blog_name)
+        .writeElement('link', options.site.blog_url)
+        .writeElement('description', options.site.blog_description)
+        .writeElement('category', options.site.blog_category)
+        .writeElement('lastBuildDate', new Date().toString());
+      
+      //posts
+      articles.forEach(function (article, i) {
+        xw.startElement('item');
+        xw.writeElement('title', article.meta.title);
+        xw.writeElement('description', article.summary);
+        xw.writeElement('link', options.site.blog_url + '/' + article.meta.path);
+      });
+
+      fs.writeFileSync(options.rss_out, xw.toString());
+    };
+
     this.routeRequests = function (app) {
       var getMatchingArticles = function (req_path) {
         if (req_path === '') {
           return articles;
         }
-        return __.filter(articles, function (article) {
+        return _.filter(articles, function (article) {
           return article.meta.path === req_path || article.meta.category === req_path;
         });
       };
@@ -70,16 +103,24 @@ module.exports = function (app, options) {
         matching_articles.sort(function (a, b) {
           return b.meta.date.getTime() - a.meta.date.getTime();
         });
-        var categories = {}, is_category, selected_category = {};
+        var categories = [], is_category;
         article_categories.forEach(function (cat) { 
+          var ret_cat = { name: cat };
           if (cat === req_path) { 
-            is_category = categories[cat] = true; 
-            categories.selected_name = cat;
+            is_category = cat;
+            ret_cat.selected = true; 
           }
+          categories.push(ret_cat);
         });
+        
         var data = { 
           articles: matching_articles, 
+          article: (matching_articles.length === 1) ? matching_articles[0] : false,
+          
           categories: categories,
+          category: (is_category) ? is_category : false,
+          
+          site: options.site,
           helpers: {
             format_date: function (opt) {
               var d = opt.fn(this);
@@ -87,14 +128,11 @@ module.exports = function (app, options) {
             }
           }
         };
+
         var view; 
-        if (req_path === '') {
-          view = 'home';
-        } else if (is_category) {
-          view = 'category';
-        } else {
-          view = 'article';
-        }
+        if (req_path === '') { view = 'home'; } 
+        else if (is_category) { view = 'category'; } 
+        else { view = 'article'; }
 
         return res.render(view, data);
       };
@@ -103,6 +141,11 @@ module.exports = function (app, options) {
        * Handle Request Paths
        */
       app.get('*', handleRequest);
+    };
+
+    this.init = function (app) {
+      this.writeXMLForRSS();
+      this.routeRequests(app);
     };
 
     return this;

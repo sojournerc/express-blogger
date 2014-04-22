@@ -25,7 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 // route requests to the blogger
-Blogger().routeRequests(app);
+Blogger({
+  // options go here 
+  // blog_name: ''
+}).init(app);
 
 // handle errors
 app.use(function(err, req, res, next){
