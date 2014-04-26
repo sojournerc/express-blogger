@@ -1,0 +1,43 @@
+
+body {
+  color: @bodyFont;
+  font-family: 'Verdana', sans-serif;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.4em;
+  line-height: 2em;
+}
+h3,h4,h5,h6{
+  font-size: 1.2em;
+}
+p {
+  margin: 0 0 @gutterEm;
+  &:first-of-type {
+    margin: @gutterEm 0;
+  }
+}
+a[href] {
+  color: @linkColor;
+  text-decoration: none;
+  &:hover {
+    color: lighten(@linkColor, 10%);
+  }
+}
+nav {
+  a[href] {
+    color: @navFont;
+    &:hover {
+      color: lighten(@navFont, 10%);
+    } 
+  }
+}
+pre {
+  margin: @gutterEm 0;
+  padding: 0.5*@gutterEm;
+  background-color: @preBg;
+  line-height: 1.6em;
+  border-radius: 1em;
+}

@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 // route requests to the blogger
-Blogger({
+new Blogger({
   // options go here 
   // blog_name: ''
 }).init(app);

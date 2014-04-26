@@ -8,22 +8,24 @@
     "await": "~0.2.1",
     "express3-handlebars": "~0.5.0",
     "grunt": "~0.4.4",
-    "grunt-concurrent": "~0.4.3",
     "grunt-contrib-less": "~0.6.5",
     "grunt-contrib-handlebars": "~0.6.1",
-    "grunt-contrib-watch": "~0.4.4",
     "grunt-express": "~1.2.1",
     "grunt-node-inspector": "~0.1.5",
-    "grunt-nodemon": "~0.1.2",
-    "grunt-open": "~0.2.3",
-    "grunt-prompt": "~1.1.0",
     "less": "~1.4.2",
     "js-yaml": "~3.0.2",
     "marked": "~0.3.2",
     "underscore": "~1.4.4",
     "xml-writer": "~1.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt-nodemon": "~0.1.2",
+    "grunt-prompt": "~1.1.0",
+    "grunt-open": "~0.2.3",
+    "grunt-concurrent": "~0.4.3",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-svgstore": "latest"
+  },
   "scripts": {
     "test": "grunt test"
   },

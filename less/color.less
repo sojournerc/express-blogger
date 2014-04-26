@@ -1,0 +1,37 @@
+@bodyFont: #565656;
+@bodyBg: #eee;
+
+@linkColor: #565389;
+@preBg: #eef;
+
+@navBg: #455;
+@navFont: #efe;
+@navActiveHover: #234;
+
+@externalsColor: #456;
+
+@postTitle: #646464;
+
+@selectionBg: #212121;
+@selectionFont: #fff;
+
+// Frameless     <http://framelessgrid.com/>
+::selection {
+  background: @selectionBg;
+  color: @selectionFont;
+}
+::-moz-selection {
+  background: @selectionBg;
+  color: @selectionFont;
+}
+
+img::selection {
+  background: transparent;
+}
+img::-moz-selection {
+  background: transparent;
+}
+
+body {
+  -webkit-tap-highlight-color: rgba(255,0,0, 0.62);
+}

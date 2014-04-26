@@ -1,4 +1,8 @@
 module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-svgstore');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-prompt');
@@ -8,13 +12,40 @@ module.exports = function(grunt) {
     var formatDate = require('./lib/format-date');
 
     var config = {
+        watch: {
+            css: {
+                files: ['**/*.less'],
+                tasks: ['less']
+            }
+        },
+        less: {
+            dev: {
+                options: {
+                    // compress: true,
+                    // cleancss: true,
+                    // sourcemap: true,
+                    // ieCompat: false
+                },
+                files: {
+                    "public/css/main.css": "less/main.less"
+                }
+            }
+        },
+        concurrent: {
+          dev: {
+            tasks: ['nodemon', 'watch'/*, 'node-inspector'*/],
+            options: {
+              logConcurrentOutput: true
+            }
+          }
+        },
         nodemon: {
             dev: {
                 options: {
                     file: 'app.js',
                     // nodeArgs: ['--debug'],
                     ignoredFiles: ['node_modules/**', 'public/**', 'build/**'],
-                    watchedExtensions: ['js','md'],
+                    watchedExtensions: ['js','hbs'],
                     // watchedFolders: ['server'],
                     // delayTime: 1,
                     // legacyWatch: true,
@@ -43,13 +74,26 @@ module.exports = function(grunt) {
                 }
             }            
         },
+        svgstore: {
+            options: {
+                prefix : 'icon-', // This will prefix each ID
+                svg: {
+                    class: 'svg-import'
+                }
+            },
+            dflt : {
+              files: {
+                'svgs/combined-icons.svg': ['svgs/*.svg'],
+              },
+            },
+        },
         write_post: {
             dir: 'articles',
             options: {}
         },
         open: {}
     };
-    grunt.registerTask('default', ['nodemon']);
+    grunt.registerTask('default', ['less','concurrent']);
 
     grunt.registerTask('post', ['prompt:post','write_post']);
     grunt.registerTask('write_post', function () {

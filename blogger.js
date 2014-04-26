@@ -4,6 +4,7 @@ var yaml = require('js-yaml');
 var marked = require('marked'); 
 var formatDate = require('./lib/format-date');
 var XMLWriter = require('xml-writer');
+var Handlebars = require('express3-handlebars');
 
 module.exports = function (options) {
     // DEFAULTS
@@ -60,7 +61,6 @@ module.exports = function (options) {
         }
       });
     };
-    this.parseArticles();
 
     this.writeXMLForRSS = function () {
       var xw = new XMLWriter();
@@ -82,6 +82,7 @@ module.exports = function (options) {
         xw.writeElement('title', article.meta.title);
         xw.writeElement('description', article.summary);
         xw.writeElement('link', options.site.blog_url + '/' + article.meta.path);
+        xw.endElement();
       });
 
       fs.writeFileSync(options.rss_out, xw.toString());
@@ -121,10 +122,17 @@ module.exports = function (options) {
           category: (is_category) ? is_category : false,
           
           site: options.site,
+
+          svg_source: fs.readFileSync('svgs/combined-icons.svg'),
+
           helpers: {
             format_date: function (opt) {
               var d = opt.fn(this);
               return formatDate(new Date(d), options.date_pattern);
+            },
+
+            icon: function (icon) {
+              return '<svg viewBox="0 0 32 32" class="icon '+ icon +'"><use xlink:href="#' + icon + '"/></svg>';
             }
           }
         };
@@ -144,6 +152,7 @@ module.exports = function (options) {
     };
 
     this.init = function (app) {
+      this.parseArticles();
       this.writeXMLForRSS();
       this.routeRequests(app);
     };

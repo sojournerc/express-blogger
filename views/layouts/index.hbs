@@ -1,4 +1,8 @@
 <!doctype html>
+
+<!--[if lt IE 9]><html class="ie"><![endif]-->
+<!--[if gte IE 9]><!--><html><!--<![endif]-->
+
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <meta name="description" content="{{#if article}}{{article.summary}}{{else}}{{site.blog_description}}{{/if}}"/>
@@ -6,7 +10,7 @@
     <link rel="alternate" type="application/atom+xml" title="{{site.blog_name}} - feed" href="/rss.xml" />
     <link rel="alternate" type="application/rss+xml" title="{{site.blog_name}}" href="/rss.xml" />
     
-    <meta name="viewport" content="width=100%, initial-scale=1">
+    <meta name="viewport" content="width=100, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -14,11 +18,14 @@
     <title>{{#if category}}{{category}}{{else}}{{#if article}}{{article.meta.title}}{{else}}{{site.blog_name}}{{/if}}{{/if}}</title>
   </head>
   <body>
+    {{{svg_source}}}
+
     <header class="text">
+      <a href="/" class="home-logo"><img src="img/logo.png"></img></a>
       <h1>{{site.blog_name}}</h1>
     </header>
 
-    <section class="nav">
+    <nav>
       <ul class="nav">
         {{#each categories}}
         <li {{#if selected}} class="active" {{/if}}>
@@ -26,7 +33,15 @@
         </li>
         {{/each}}
       </ul>
-    </section>
+      <ul class="externals">
+        <li><a target="_blank" href="http://twitter.com">{{{icon "icon-twitter"}}}</a></li>
+        <li><a target="_blank" href="http://github.com">{{{icon "icon-github"}}}</a></li>
+        <li><a target="_blank" href="http://feedburner.com">{{{icon "icon-feed"}}}</a></li>
+        <li><a target="_blank" href="http://soundcloud.com">{{{icon "icon-soundcloud"}}}</a></li>
+        <li><a target="_blank" href="http://youtube.com">{{{icon "icon-youtube"}}}</a></li>
+      </ul>
+    </nav>
+
 
     {{{body}}}
     
@@ -35,5 +50,6 @@
     <script type="text/javascript" src="/js/libs/prettify.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
+    <footer>Powered by <a href="">Express Blogger</a></footer>
   </body>
 </html>
