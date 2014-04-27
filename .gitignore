@@ -6,3 +6,5 @@ deploy.sh
 **/node_modules/*
 
 *.txt~
+
+public/rss.xml
