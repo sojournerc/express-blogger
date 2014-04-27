@@ -5,7 +5,7 @@ date: 04/14/2014
 
 ___This is your first post!___
 
-I wrote it for you so you can learn a bit about markdown and how to use it. 
+I wrote it for you so you can learn a bit about markdown and how to use it. Write better, easier - without a simple interface, your favorite text editor!
 
 You can make lists
   - Like this

@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                     file: 'app.js',
                     // nodeArgs: ['--debug'],
                     ignoredFiles: ['node_modules/**', 'public/**', 'build/**'],
-                    watchedExtensions: ['js','hbs'],
+                    watchedExtensions: ['js','hbs','md'],
                     // watchedFolders: ['server'],
                     // delayTime: 1,
                     // legacyWatch: true,
@@ -112,10 +112,6 @@ module.exports = function(grunt) {
 
         grunt.config('open.file.path', path);
         grunt.task.run('open:file');
-    });
-
-    grunt.registerTask('parse_articles', function () {
-        var blogger = require('./blogger')().parseArticles();
     });
 
     // sets the configuration in grunt

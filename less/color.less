@@ -7,12 +7,13 @@
 @bodyBg: #eee;
 
 @linkColor: #006BD6;
-@preBg: #eef;
+@preBg: #CFDAF8;
 
 @navBg: #665944;
 @navFont: #eee;
 @navActiveHover: #1576D6;
 
+// twitter, rss, etc
 @externalsColor: #445566;
 
 @postTitle: #445566;
@@ -20,7 +21,7 @@
 @selectionBg: #212121;
 @selectionFont: #fff;
 
-// Frameless     <http://framelessgrid.com/>
+// taken from Frameless     <http://framelessgrid.com/>
 ::selection {
   background: @selectionBg;
   color: @selectionFont;
@@ -29,14 +30,12 @@
   background: @selectionBg;
   color: @selectionFont;
 }
-
 img::selection {
   background: transparent;
 }
 img::-moz-selection {
   background: transparent;
 }
-
 body {
   -webkit-tap-highlight-color: rgba(255,0,0, 0.62);
 }
