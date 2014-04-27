@@ -31,19 +31,25 @@ body, section, article, header, footer, div, nav {
     text-align: center;
 }
 
+html {
+  background-color: @htmlBg;
+}
 body {
   max-width: @14cols;
   margin: 0 auto;
   padding: @gutterEm @gutterEm @1col;
   position: relative;
+  background-color: @bodyBg;
   .clear-fix;
   & > header {
     .home-logo {
       float: left;
       height: 5em;
-      margin: -@gutterEm @gutterEm 0 0;
-      img {
-        height: 100%;
+      margin: 0 @gutterEm 0 0;
+      .icon {
+        height: 3em;
+        width: 3em;
+        fill: @mainTheme;
       }
     }
     height: @1cols;
@@ -57,13 +63,17 @@ body {
       list-style: none;
       li {
         background-color: lighten(@navBg, 1%);
+        a[href] { 
+          display: block; 
+          line-height: 3em;  
+        }
         &:nth-child(odd) {
           background-color: @navBg;
         }
         &.active {
           background-color: @navActiveHover;
         }
-        padding: 0.5em*@gutterEm;
+        padding: 0 0.5em*@gutterEm;
         &:hover {
           background-color: fadeout(@navActiveHover, 10%);
         }
@@ -106,6 +116,7 @@ article {
     color: @postTitle;
     .sub-head {
       font-size: 0.75em;
+      .pull-right;
     }
   }
   ul {

@@ -188,11 +188,15 @@ nav {
 .align-center {
   text-align: center;
 }
+html {
+  background-color: #445566;
+}
 body {
   max-width: 61.5em;
   margin: 0 auto;
   padding: 1.5em 1.5em 3em;
   position: relative;
+  background-color: #eeeeee;
 }
 body:after {
   display: table;
@@ -207,10 +211,12 @@ body > header {
 body > header .home-logo {
   float: left;
   height: 5em;
-  margin: -1.5em 1.5em 0 0;
+  margin: 0 1.5em 0 0;
 }
-body > header .home-logo img {
-  height: 100%;
+body > header .home-logo .icon {
+  height: 3em;
+  width: 3em;
+  fill: #d68600;
 }
 body > nav {
   float: right;
@@ -221,17 +227,21 @@ body > nav ul.nav {
   list-style: none;
 }
 body > nav ul.nav li {
-  background-color: #465858;
-  padding: 0.75em;
+  background-color: #695c46;
+  padding: 0 0.75em;
+}
+body > nav ul.nav li a[href] {
+  display: block;
+  line-height: 3em;
 }
 body > nav ul.nav li:nth-child(odd) {
-  background-color: #445555;
+  background-color: #665944;
 }
 body > nav ul.nav li.active {
-  background-color: #223344;
+  background-color: #1576d6;
 }
 body > nav ul.nav li:hover {
-  background-color: rgba(34, 51, 68, 0.9);
+  background-color: rgba(21, 118, 214, 0.9);
 }
 body > nav ul.externals {
   list-style: none;
@@ -267,10 +277,11 @@ article {
 }
 article header {
   margin: 0 0 1.5em;
-  color: #646464;
+  color: #445566;
 }
 article header .sub-head {
   font-size: 0.75em;
+  float: right;
 }
 article ul {
   list-style: circle;
@@ -344,14 +355,14 @@ p:first-of-type {
   margin: 1.5em 0;
 }
 a[href] {
-  color: #565389;
+  color: #006bd6;
   text-decoration: none;
 }
 a[href]:hover {
-  color: #6d6aa5;
+  color: #0a84ff;
 }
 nav a[href] {
-  color: #eeffee;
+  color: #eeeeee;
 }
 nav a[href]:hover {
   color: #ffffff;

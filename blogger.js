@@ -107,7 +107,8 @@ module.exports = function (options) {
         var categories = [], is_category;
         article_categories.forEach(function (cat) { 
           var ret_cat = { name: cat };
-          if (cat === req_path) { 
+          if (cat === req_path || 
+            (matching_articles.length === 1 && matching_articles[0].meta.category === cat)) { 
             is_category = cat;
             ret_cat.selected = true; 
           }
