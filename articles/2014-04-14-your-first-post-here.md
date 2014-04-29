@@ -3,15 +3,16 @@ title: Your First Post Here
 category: general
 date: 04/14/2014
 
-___This is your first post!___
+___This is your first post!
 
-I wrote it for you so you can learn a bit about markdown and how to use it. Write better, easier - without a simple interface, your favorite text editor!
+I wrote it for you so you can learn a bit about [markdown](https://daringfireball.net/projects/markdown/basics). Write better, easier - with a simple interface: your favorite text editor!
 
 You can make lists
   - Like this
   - this
-  - or this and this
-    
+  - or this 
+  - and this
+
 
     function () {
       create.apply(['snippets','like','a','pro', true])
