@@ -23,6 +23,29 @@ The following default command will start the express server, compile less, intit
 
 Visit [localhost:5000](http://localhost:5000) to view your blog
 
+Settings
+===
+
+Settings for the blogging engine may be configured in `app.js`. 
+
+The site section is particularly important, as it is used to configure the urls and blog information in `rss.xml`.
+
+Here are the defaults: 
+
+        new Blogger({
+          file_ext: '.md',
+          summary_length: 500,
+          article_path: 'articles',
+          date_pattern: 'dd MMM, YYYY', // see /lib/format-date.js for options 
+          rss_out: 'public/rss.xml',
+          site: {
+            blog_name: 'An Express Blogger Site',
+            blog_description: 'Blog in node.js with express in minutes - without a database',
+            blog_url: 'http://your-url-here.com',
+            blog_category: '',
+          }
+        }).init(app);
+
 Customize
 ===
 
@@ -79,7 +102,7 @@ Posts with the same category will be displayed together by navigating to http://
 
 Express Blogger parses markdown and converts it to HTML for display. 
 
-`<pre>` tags are also colored using [pretty print]() for nice readable code snippets. Indent twice after an empty line or use "`" to denote code. 
+`<pre>` tags are also colored using [pretty print](https://code.google.com/p/google-code-prettify/) for nice readable code snippets. Indent twice after an empty line or use "`" to denote code. 
 
 [Learn more about markdown.](https://daringfireball.net/projects/markdown/basics).
 
