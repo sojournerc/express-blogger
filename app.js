@@ -24,10 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // route pages
 app.use(app.router);
 
-// route requests to the blogger
+// intitialize the blogger
 new Blogger({
-  // options go here 
-  // blog_name: ''
+  // Your Settings Here! - See README.md
 }).init(app);
 
 // handle errors
