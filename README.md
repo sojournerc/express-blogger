@@ -9,8 +9,12 @@ Get a fully customizable blog deployed in minutes using git source control and [
 Getting Started
 ===
 
-### Install grunt-cli:
+### Clone this repository
 
+For a quick install, clone this repository using `git clone https://github.com/sojournerc/express-blogger.git my-blog/`  - to use within an existing app (without the supplied app.js file) run `npm install express-blogger`
+
+
+### Install grunt-cli:
 
 Follow [this guide](http://gruntjs.com/getting-started) to get up and running with Grunt.
 
@@ -32,6 +36,9 @@ The site section is particularly important, as it is used to configure the urls 
 
 Here are the defaults: 
 
+
+ADD BASEPATH 
+
         new Blogger({
           file_ext: '.md',
           summary_length: 500,
@@ -42,7 +49,7 @@ Here are the defaults:
             blog_name: 'An Express Blogger Site',
             blog_description: 'Blog in node.js with express in minutes - without a database',
             blog_url: 'http://your-url-here.com',
-            blog_category: '',
+            blog_category: ''
           }
         }).init(app);
 

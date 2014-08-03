@@ -375,6 +375,11 @@ pre {
   line-height: 1.6em;
   border-radius: 1em;
 }
+blockquote {
+  margin: 1.5em 0;
+  padding: 0.75em;
+  background-color: #cfdaf8;
+}
 ::selection {
   background: #212121;
   color: #ffffff;

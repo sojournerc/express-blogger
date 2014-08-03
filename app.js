@@ -3,7 +3,7 @@ var express = require('express'),
     app = module.exports.app = express(),
     http = require('http'),
     path = require('path'),
-    exphbs  = require('express3-handlebars');
+    exphbs  = require('express3-handlebars'),
     Blogger = require('./blogger');
 
   // templating

@@ -1,6 +1,6 @@
 {
   "name": "express-blogger",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "a simple markdown based blogging engine using express, LESS, and a responsive template - inspired by ruby gem toto",
   "main": "Gruntfile.js",
   "dependencies": {
